@@ -157,7 +157,8 @@ exec firefox "https://www.youtube.com/watch?v=cq2Ef6rvL6g"
 exec firefox "https://www.youtube.com/watch?v=L2QTtdeL3dE"
 exec firefox "https://www.youtube.com/watch?v=7xO5XRv-hXw"
 exec firefox "https://www.youtube.com/watch?v=Z9gBylcoXoI"
-exec firefox "~/books/k8s/OReilly.Kubernetes.Best.Practices.pdf" 
+exec firefox "https://www.youtube.com/watch?v=O70QLOD__Hs"
+exec firefox "~/books/message_brockers/Kafka The Definitive Guide Real-Time...pdf"
 assign [class="firefox"] $ws5
 exec lens-desktop
 assign [class="Lens"] $ws8
