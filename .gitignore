@@ -1,5 +1,5 @@
 *
 !~/.config/nvim/lua/user/
-!~/.config/tmux/tmux.conf
-!~/.config/tmux/tmux-sessionizer
+!~/scripts/
+!~/.config/tmux/
 !~/.config/i3/
