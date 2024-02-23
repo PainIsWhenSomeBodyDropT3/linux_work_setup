@@ -5,6 +5,8 @@
 -- automatically pick-up stored data by this setting.)
 require "harpoon.mark"
 require "harpoon.ui"
+require "copilot.suggestion"
+
 return {
   -- first key is the mode
   v = {
@@ -13,6 +15,16 @@ return {
 
     ["J"] = ":m '>+1<CR><CR>gv=gv",
     ["K"] = ":m '<-2<CR><CR>gv=gv",
+  },
+
+  i = {
+    -- ["<M-k>"] = ":wq",
+    ["<C-l>"] = {
+      function() require("copilot.suggestion").accept_word() end,
+    },
+    ["<C-h>"] = {
+      function() require("copilot.suggestion").accept_line() end,
+    },
   },
 
   n = {
@@ -35,20 +47,14 @@ return {
       function() require("harpoon.ui").nav_file(4) end,
     },
 
+    ["<leader>h"] = ":wincmd h<CR>",
+    ["<leader>j"] = ":wincmd j<CR>",
+    ["<leader>k"] = ":wincmd k<CR>",
+    ["<leader>l"] = ":wincmd l<CR>",
+
     ["<leader>gaj"] = { "<cmd>GoAddTag json<cr>", desc = "Add json to Go structure" },
     ["<leader>grj"] = { "<cmd>GoRmTag json<cr>", desc = "Remove json from Go structure" },
-
-    ["<leader>r"] = { "<cmd>!go run .<cr>", desc = "Run main.go" },
-    ["<leader>t"] = { "<cmd>!go test<cr>", desc = "Run testing" },
     ["<leader>i"] = { "<cmd>GoIfErr<cr>", desc = "If err" },
-    ["<leader>m"] = { "<cmd>!make run<cr>", desc = "Go make run" },
-    ["<leader>bm"] = { "<cmd>!go test -bench=. -benchmem -run=^# -benchtime=10s<cr>", desc = "Benchmark" },
-    ["<leader>pr"] = {
-      "<cmd>!go test -bench=. -benchmem -run=^# -memprofile mem.pprof -cpuprofile cpu.pprof -benchtime=10s<cr>",
-      desc = "Profilings",
-    },
-    ["<leader>prc"] = { "<cmd>!go tool pprof -http=:8080 cpu.pprof <cr>", desc = "Cpu prof in web" },
-    ["<leader>prm"] = { "<cmd>!go tool pprof -http=:8080 mem.pprof <cr>", desc = "Mem prof in web" },
 
     ["<leader>s"] = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
 
@@ -65,29 +71,16 @@ return {
     ["<leader>y"] = '"+y',
     ["<leader>Y"] = '"+Y',
 
-    L = {
-      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-      desc = "Next buffer",
-    },
-    H = {
-      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-      desc = "Previous buffer",
-    },
+    -- L = {
+    --   function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+    --   desc = "Next buffer",
+    -- },
+    -- H = {
+    --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+    --   desc = "Previous buffer",
+    -- },
 
-    -- mappings seen under group name "Buffer"
-    ["<leader>bD"] = {
-      function()
-        require("astronvim.utils.status").heirline.buffer_picker(
-          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-        )
-      end,
-      desc = "Pick to close",
-    },
-    -- tables with the `name` key will be registered with which-key if it's installed
-    -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
 
   t = {
