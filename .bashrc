@@ -122,15 +122,22 @@ export PATH=$PATH:/usr/local/lib/nodejs/node-v20.10.0-linux-x64/bin
 #for zoxide
 export PATH=$PATH:$HOME/.local/bin
 alias nvim='/squashfs-root/usr/bin/nvim'
+
 alias dp='docker ps'
 alias dpa='docker ps -a'
+
 alias di='docker images'
 alias drmi='docker rmi $(docker images -q)'
 alias drmif='docker rmi -f $(docker images -q)'
+alias drmip='docker image prune'
+
 alias drmc='docker rm $(docker ps -q)'
+alias drmcp='docker container prune'
 alias drmcf='docker rm -f $(docker ps -q)'
 alias drmca='docker rm $(docker ps -a -q)'
 alias drmcaf='docker rm -f $(docker ps -a -q)'
+alias de='docker exec -it'
+
 alias c='clear'
 alias cd='z'
 source <(kubectl completion bash)
